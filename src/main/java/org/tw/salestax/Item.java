@@ -7,16 +7,19 @@ public class Item {
     private boolean isImported;
     private double cost;
     private String[] taxExemptedItems = {"book", "pills", "chocolate"};
+    private double salesTax;
+    private double finalPrice = 0;
 
-    public Item(int quantity, String name, boolean isImported, double cost) {
+    Item(int quantity, String name, boolean isImported, double cost) {
         this.quantity = quantity;
         this.itemName = name;
         this.isImported = isImported;
         this.cost = cost;
+        computeTax();
     }
 
 
-    public boolean isTaxExempted() {
+    boolean isTaxExempted() {
         for (String taxExemptedItem : taxExemptedItems) {
             if (itemName.contains(taxExemptedItem))
                 return true;
@@ -25,13 +28,36 @@ public class Item {
     }
 
 
-    public double computeTax() {
+    double computeTax() {
+        salesTax = 0;
         if (!isTaxExempted()) {
-            cost = (cost + 0.1 * cost);
+            salesTax = (0.1 * cost);
         }
         if (isImported) {
-            cost = (cost + 0.05 * cost);
+            salesTax += (0.05 * cost);
         }
-        return cost;
+        return salesTax;
+    }
+
+    double getFinalPrice() {
+        finalPrice = cost + salesTax;
+        return finalPrice;
+    }
+
+    public double getSalesTax() {
+        return salesTax;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    @Override
+    public String toString() {
+        return getQuantity() + " " + getItemName() + " - " + getFinalPrice() + "\n";
     }
 }

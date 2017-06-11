@@ -28,26 +28,51 @@ public class SalesTaxTest {
     }
 
     @Test
-    public void priceOfATaxExemptedItemShouldBeTheSame(){
-        Item item = new Item(1,"Box of chocolates", false, 12.99);
-        assertEquals(12.99, item.computeTax(), 0.1);
+    public void taxOnATaxExemptedItemShouldBeZero(){
+        Item item = new Item(1,"Box of chocolates", false, 10.00);
+        assertEquals(0, item.computeTax(), 0.1);
     }
 
     @Test
     public void priceOfAnImportedItemShouldBeFivePercentMoreThanTheShelfPrice(){
         Item item = new Item(1,"Box of chocolates", true, 10.00);
-        assertEquals(10.50, item.computeTax(), 0.1);
+        assertEquals(10.50, item.getFinalPrice(), 0.1);
     }
 
     @Test
     public void priceOfATaxableItemShouldBeTenPercentMoreThanTheShelfPrice(){
         Item item = new Item(1,"Music CD", false, 10.00);
-        assertEquals(11.5, item.computeTax(), 0.1);
+        assertEquals(11.0, item.getFinalPrice(), 0.1);
     }
     @Test
     public void priceOfATaxableImportedItemShouldBeFifteenPercentMoreThanTheShelfPrice(){
         Item item = new Item(1,"Music DVD", true, 10.00);
-        assertEquals(11.5, item.computeTax(), 0.1);
+        assertEquals(11.5, item.getFinalPrice(), 0.1);
     }
+    @Test
+    public void sumOfSalesTaxesOfAllItemsInTheCart(){
+        ArrayList<String> inputItemList = new ArrayList<String>();
+        inputItemList.add("1 Box of chocolates at 10.00");
+        inputItemList.add("1 imported book at 20.00" );
+        Cart cart = new Cart();
+        cart.addItem(inputItemList);
+        BillCalculator billCalculator = new BillCalculator();
+        assertEquals(1.0, billCalculator.getTotalSalesTax(cart.getItems()),0.1);
 
+    }
+    @Test
+    public void shouldGetTotalBillOfAllItemsInTheCart(){
+        ArrayList<String> inputItemList = new ArrayList<String>();
+        inputItemList.add("1 Box of chocolates at 10.00");
+        inputItemList.add("1 imported book at 20.00" );
+        Cart cart = new Cart();
+        cart.addItem(inputItemList);
+        BillCalculator billCalculator = new BillCalculator();
+        assertEquals(31.00, billCalculator.getTotalPrice(cart.getItems()),0.1);
+    }
+    @Test
+    public void shouldOutputTheAddedItemAsAString() {
+        Item item = new Item(1, "Box of chocolates", false, 10.00);
+        assertEquals("1 Box of chocolates - 10.0", item.toString());
+    }
 }

@@ -2,17 +2,33 @@ package org.tw.salestax;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class BillCalculator {
+    double totalSalesTax = 0;
+    double totalBill = 0;
+    ArrayList<String> itemsList= new ArrayList<>();
 
-    public void getTotal(Cart cart) {
+
+
+    double getTotalSalesTax(ArrayList<Item> items) {
+        for (Item item : items) {
+            totalSalesTax += item.getSalesTax();
+        }
+        return totalSalesTax;
+    }
+
+    double getTotalPrice(ArrayList<Item> items) {
+        for (Item item : items) {
+            totalBill += item.getFinalPrice();
+        }
+        return totalBill;
+    }
+    ArrayList<String> generateBill(ArrayList<Item> items){
+        for (Item item: items) {
+            itemsList.add(item.toString());
+        }
+        return itemsList;
 
     }
 
-    public String displayBill(Cart cart) {
-
-        return null;
-    }
 }

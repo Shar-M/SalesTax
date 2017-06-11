@@ -17,13 +17,13 @@ public class Cart {
     public void addItem(ArrayList<String> inputItemList) {
         isCartEmpty = false;
         for (String inputItem : inputItemList) {
-            String[] itemDetails = inputItem.split("at");
+            String[] itemDetails = inputItem.split(" at ");
             double shelfPrice = Double.parseDouble(itemDetails[1]);
             int quantity = getQuantity(itemDetails[0]);
             String name = getItemName(itemDetails[0]);
 
             boolean isImported = false;
-            if (itemDetails[0].contains("imported"))
+            if (itemDetails[0].contains(" imported "))
                 isImported = true;
 
             items.add(new Item(quantity, name, isImported, shelfPrice));
@@ -43,8 +43,7 @@ public class Cart {
 
     }
 
-    public ArrayList<Item> getItems(){
+    public ArrayList<Item> getItems() {
         return items;
     }
-
 }
