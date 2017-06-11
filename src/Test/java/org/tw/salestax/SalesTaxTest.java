@@ -78,13 +78,13 @@ public class SalesTaxTest {
     @Test
     public void shouldOutputMultipleAddedItemsAsAnArrayList(){
         ArrayList<String> inputItemList = new ArrayList<String>();
-        ArrayList<String> outputItemList = new ArrayList<String>();
+        ArrayList<String> outputItemList;
         ArrayList<String> expectedItemList = new ArrayList<String>();
 
         inputItemList.add("1 Box of chocolates at 10.00");
-        inputItemList.add("1 imported book at 20.00" );
+        inputItemList.add("1 imported book at 12.99" );
         expectedItemList.add("1 Box of chocolates - 10.0");
-        expectedItemList.add("1 imported book - 21.0");
+        expectedItemList.add("1 imported book - 13.6395");
         Cart cart = new Cart();
         cart.addItem(inputItemList);
         BillCalculator billCalculator = new BillCalculator();
