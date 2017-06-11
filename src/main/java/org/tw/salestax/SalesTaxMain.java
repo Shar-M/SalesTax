@@ -20,7 +20,7 @@ public class SalesTaxMain {
             System.out.println(string);
         }
         double totalSalesTax = billCalculator.getTotalSalesTax(cart.getItems());
-        System.out.println("Sales Tax - s" + (Math.floor(totalSalesTax * 100)) / 100);
+        System.out.println("Sales Tax - " + (Math.floor(totalSalesTax * 100)) / 100);
         double totalBill = billCalculator.getTotalPrice(cart.getItems());
         System.out.println("Total Bill - " + Math.floor(totalBill * 100) / 100);
     }
