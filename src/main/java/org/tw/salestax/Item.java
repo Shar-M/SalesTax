@@ -58,6 +58,10 @@ public class Item {
 
     @Override
     public String toString() {
-        return getQuantity() + " " + getItemName() + " - " + getFinalPrice() + "\n";
+        return getQuantity()  + getItemName() + " - " + getFinalPrice();
+    }
+    @Override
+    public boolean equals(Object obj) {
+        return toString().equals(obj.toString());
     }
 }
