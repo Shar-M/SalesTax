@@ -73,7 +73,7 @@ public class SalesTaxTest {
     @Test
     public void shouldOutputTheAddedItemAsAString() {
         Item item = new Item(1, "Box of chocolates", true, 10.00);
-        assertTrue(("1 Box of chocolates - 10.5").equals(item.toString()));
+        assertEquals(("1 Box of chocolates - 10.5"),item.toString());
     }
     @Test
     public void shouldOutputMultipleAddedItemsAsAnArrayList(){
@@ -83,8 +83,8 @@ public class SalesTaxTest {
 
         inputItemList.add("1 Box of chocolates at 10.00");
         inputItemList.add("1 imported book at 12.99" );
-        expectedItemList.add("1 Box of chocolates - 10.0");
-        expectedItemList.add("1 imported book - 13.6395");
+        expectedItemList.add("1  Box of chocolates - 10.0");
+        expectedItemList.add("1  imported book - 13.6395");
         Cart cart = new Cart();
         cart.addItem(inputItemList);
         BillCalculator billCalculator = new BillCalculator();

@@ -58,7 +58,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return getQuantity()  + getItemName() + " - " + getFinalPrice();
+        return getQuantity() +" " + getItemName() + " - " + getFinalPrice();
     }
     @Override
     public boolean equals(Object obj) {
