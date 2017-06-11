@@ -8,7 +8,8 @@ public class Cart {
 
     private boolean isCartEmpty = true;
     private ArrayList<Item> items = new ArrayList<>();
-
+    private static final String AT = " at ";
+    private static final String IMPORTED = " imported ";
     public boolean isCartEmpty() {
         return isCartEmpty;
     }
@@ -17,13 +18,14 @@ public class Cart {
     public void addItem(ArrayList<String> inputItemList) {
         isCartEmpty = false;
         for (String inputItem : inputItemList) {
-            String[] itemDetails = inputItem.split(" at ");
+            String[] itemDetails = inputItem.split(AT);
             double shelfPrice = Double.parseDouble(itemDetails[1]);
+
             int quantity = getQuantity(itemDetails[0]);
             String name = getItemName(itemDetails[0]);
 
             boolean isImported = false;
-            if (itemDetails[0].contains(" imported "))
+            if (itemDetails[0].contains(IMPORTED))
                 isImported = true;
 
             items.add(new Item(quantity, name, isImported, shelfPrice));
